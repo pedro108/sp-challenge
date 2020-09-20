@@ -3,6 +3,7 @@ GEM
   specs:
     ast (2.4.1)
     diff-lcs (1.4.4)
+    fakefs (1.2.2)
     parallel (1.19.2)
     parser (2.7.1.4)
       ast (~> 2.4.1)
@@ -40,6 +41,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  fakefs
   rspec
   rubocop
 
