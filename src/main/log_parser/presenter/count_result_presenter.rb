@@ -7,7 +7,7 @@ module LogParser
     class CountResultPresenter
       def present(count_result)
         [
-          present_for(count_result, ['Page', 'Visits'], :page_visits),
+          present_for(count_result, %w[Page Visits], :page_visits),
           present_for(count_result, ['Page', 'Unique Views'], :unique_visits)
         ]
       end

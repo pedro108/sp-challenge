@@ -11,7 +11,10 @@ RSpec.describe LogParser::Counter::PageVisitsCounter do
         subject.add_visit(page: '/home', ip: '127.0.0.1')
         subject.add_visit(page: '/about', ip: '127.0.0.1')
 
-        expect(subject.collect).to eql([ { page: '/home', page_visits: 1, unique_visits: 1 }, { page: '/about', page_visits: 1, unique_visits: 1 } ])
+        expect(subject.collect).to eql([
+                                         { page: '/home', page_visits: 1, unique_visits: 1 },
+                                         { page: '/about', page_visits: 1, unique_visits: 1 }
+                                       ])
       end
     end
 
@@ -20,7 +23,7 @@ RSpec.describe LogParser::Counter::PageVisitsCounter do
         subject.add_visit(page: '/home', ip: '127.0.0.1')
         subject.add_visit(page: '/home', ip: '127.0.0.1')
 
-        expect(subject.collect).to eql([ { page: '/home', page_visits: 2, unique_visits: 1 } ])
+        expect(subject.collect).to eql([{ page: '/home', page_visits: 2, unique_visits: 1 }])
       end
     end
 
@@ -29,7 +32,7 @@ RSpec.describe LogParser::Counter::PageVisitsCounter do
         subject.add_visit(page: '/home', ip: '127.0.0.1')
         subject.add_visit(page: '/home', ip: '192.168.0.1')
 
-        expect(subject.collect).to eql([ { page: '/home', page_visits: 2, unique_visits: 2 } ])
+        expect(subject.collect).to eql([{ page: '/home', page_visits: 2, unique_visits: 2 }])
       end
     end
   end
@@ -40,7 +43,7 @@ RSpec.describe LogParser::Counter::PageVisitsCounter do
       subject.collect
       subject.add_visit(page: '/about', ip: '127.0.0.1')
 
-      expect(subject.collect).to eql([ { page: '/about', page_visits: 1, unique_visits: 1 } ])
+      expect(subject.collect).to eql([{ page: '/about', page_visits: 1, unique_visits: 1 }])
     end
   end
 end

@@ -3,7 +3,7 @@
 require 'log_parser/presenter/count_result_presenter'
 
 RSpec.describe LogParser::Presenter::CountResultPresenter do
-  let(:count_result) {
+  let(:count_result) do
     [
       {
         page: '/home',
@@ -21,7 +21,7 @@ RSpec.describe LogParser::Presenter::CountResultPresenter do
         unique_visits: 22
       }
     ]
-  }
+  end
   subject { described_class.new }
 
   describe '#present' do
@@ -37,11 +37,10 @@ RSpec.describe LogParser::Presenter::CountResultPresenter do
           "| /home  | 100    |\n"\
           "| /me    | 95     |\n"\
           "| /about | 90     |\n"\
-          "+--------+--------+"
+          '+--------+--------+'
         )
       end
     end
-
 
     it 'returns a terminal table for the count result unique visits, with a descending order' do
       present_result = subject.present(count_result)
@@ -54,7 +53,7 @@ RSpec.describe LogParser::Presenter::CountResultPresenter do
         "| /about | 25           |\n"\
         "| /me    | 22           |\n"\
         "| /home  | 20           |\n"\
-        "+--------+--------------+"
+        '+--------+--------------+'
       )
     end
   end

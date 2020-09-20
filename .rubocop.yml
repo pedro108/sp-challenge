@@ -1,5 +1,9 @@
 AllCops:
   NewCops: enable
 
+Metrics/BlockLength:
+  Exclude:
+    - 'src/spec/**/*_spec.rb'
+
 Style/Documentation:
   Enabled: false

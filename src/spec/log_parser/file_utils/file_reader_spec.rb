@@ -21,7 +21,9 @@ RSpec.describe LogParser::FileUtils::FileReader do
             expected_lines.write("Line read: #{line}.")
           end
 
-          expect(expected_lines.string).to eql("Line read: /help_page/1 126.318.035.038.Line read: /contact 184.123.665.067.")
+          expect(expected_lines.string).to eql(
+            'Line read: /help_page/1 126.318.035.038.Line read: /contact 184.123.665.067.'
+          )
         end
       end
     end

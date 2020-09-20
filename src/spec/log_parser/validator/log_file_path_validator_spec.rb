@@ -19,17 +19,23 @@ RSpec.describe LogParser::Validator::LogFilePathValidator do
 
     context 'when the provided log_file_path is nil' do
       it 'raises a log_file_path required error' do
-        expect {
+        expect do
           subject.validate(nil)
-        }.to raise_error(RuntimeError, 'A log_file_path parameter is required. e.g. $ log-parser path/to/webserver.log')
+        end.to raise_error(
+          RuntimeError,
+          'A log_file_path parameter is required. e.g. $ log-parser path/to/webserver.log'
+        )
       end
     end
 
     context 'when the provided log_file_path is empty' do
       it 'raises a log_file_path required error' do
-        expect {
+        expect do
           subject.validate('')
-        }.to raise_error(RuntimeError, 'A log_file_path parameter is required. e.g. $ log-parser path/to/webserver.log')
+        end.to raise_error(
+          RuntimeError,
+          'A log_file_path parameter is required. e.g. $ log-parser path/to/webserver.log'
+        )
       end
     end
 
@@ -38,9 +44,9 @@ RSpec.describe LogParser::Validator::LogFilePathValidator do
         log_file_path = 'path/to/logfile.log'
         allow(file_existence_checker).to receive(:check).with(log_file_path).and_return(false)
 
-        expect {
+        expect do
           subject.validate(log_file_path)
-        }.to raise_error("No log file found for path #{log_file_path}")
+        end.to raise_error("No log file found for path #{log_file_path}")
       end
     end
   end

@@ -30,16 +30,16 @@ module LogParser
       end
 
       def result_exists_for(page)
-        result[page] != nil
+        !result[page].nil?
       end
 
       def collect_result
         result.keys.reduce([]) do |acc, page|
           acc.concat([{
-            page: page,
-            page_visits: result[page].visits,
-            unique_visits: result[page].unique_visits
-          }])
+                       page: page,
+                       page_visits: result[page].visits,
+                       unique_visits: result[page].unique_visits
+                     }])
         end
       end
 
