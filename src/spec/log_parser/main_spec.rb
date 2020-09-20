@@ -7,15 +7,49 @@ RSpec.describe LogParser::Main do
   include FakeFS::SpecHelpers
 
   context 'when the file is parsed successfully' do
-    it 'returns the received log file_utils path' do
+    let(:content) { "/help_page/1 126.318.035.038\n/contact 184.123.665.067\n/home 184.123.665.067\n/about/2 444.701.448.104\n/help_page/1 929.398.951.889\n/index 444.701.448.104\n/help_page/1 722.247.931.582\n/about 061.945.150.735\n/help_page/1 646.865.545.408\n/home 235.313.352.950\n/contact 184.123.665.067\n/help_page/1 543.910.244.929\n/home 316.433.849.805\n/about/2 444.701.448.104\n/contact 543.910.244.929\n/about 126.318.035.038\n/about/2 836.973.694.403\n/index 316.433.849.805\n/index 802.683.925.780\n/help_page/1 929.398.951.889" }
+
+    it 'returns a sorted table with the page views count' do
       FakeFS.with_fresh do
         file_path = 'logfile.log'
-        content = "/help_page/1 126.318.035.038\n/contact 184.123.665.067"
         File.write(file_path, content, mode: 'w')
 
-        parsed_file_path = LogParser::Main.parse(log_file_path: file_path)
+        parsed_log = LogParser::Main.parse(log_file_path: file_path)
 
-        expect(parsed_file_path).to eql(file_path)
+        expect(parsed_log[0].to_s).to eql(
+                                        "+--------------+--------+\n"\
+          "| Page         | Visits |\n"\
+          "+--------------+--------+\n"\
+          "| /help_page/1 | 6      |\n"\
+          "| /index       | 3      |\n"\
+          "| /about/2     | 3      |\n"\
+          "| /home        | 3      |\n"\
+          "| /contact     | 3      |\n"\
+          "| /about       | 2      |\n"\
+          "+--------------+--------+"
+        )
+      end
+    end
+
+    it 'returns a sorted table with the unique views count' do
+      FakeFS.with_fresh do
+        file_path = 'logfile.log'
+        File.write(file_path, content, mode: 'w')
+
+        parsed_log = LogParser::Main.parse(log_file_path: file_path)
+
+        expect(parsed_log[1].to_s).to eql(
+          "+--------------+--------------+\n"\
+          "| Page         | Unique Views |\n"\
+          "+--------------+--------------+\n"\
+          "| /help_page/1 | 5            |\n"\
+          "| /index       | 3            |\n"\
+          "| /home        | 3            |\n"\
+          "| /about       | 2            |\n"\
+          "| /about/2     | 2            |\n"\
+          "| /contact     | 2            |\n"\
+          "+--------------+--------------+"
+        )
       end
     end
   end

@@ -2,6 +2,8 @@
 # frozen_string_literal: true
 
 $LOAD_PATH.unshift(File.join(__FILE__, '../../src/main'))
+$LOAD_PATH.unshift(File.join(__FILE__, '../../vendor/ruby/2.7.0/gems/terminal-table-1.8.0/lib'))
+$LOAD_PATH.unshift(File.join(__FILE__, '../../vendor/ruby/2.7.0/gems/unicode-display_width-1.7.0/lib'))
 
 require 'log_parser/main'
 
