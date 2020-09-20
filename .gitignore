@@ -1,0 +1,5 @@
+# Ignore installed gems directory.
+/vendor
+
+# Ignore Rubymine config.
+/.idea

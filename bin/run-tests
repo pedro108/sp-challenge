@@ -1,0 +1,3 @@
+#!/bin/bash
+
+./vendor/ruby/2.7.0/bin/rspec -I src/main src/spec "$@"
