@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
-require 'pp'
-require 'fakefs/safe'
-require 'fakefs/spec_helpers'
+require 'fakefs_helper'
 require 'log_parser/file_utils/file_reader'
 
 RSpec.describe LogParser::FileUtils::FileReader do
   include FakeFS::SpecHelpers
-  subject { LogParser::FileUtils::FileReader.new }
+
+  subject { described_class.new }
 
   describe '#read' do
     context 'when the file_utils is read successfully' do
