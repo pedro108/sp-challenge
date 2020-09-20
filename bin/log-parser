@@ -9,4 +9,9 @@ require 'log_parser/main'
 
 log_file_path = ARGV[0]
 
-puts LogParser::Main.parse(log_file_path: log_file_path)
+begin
+  puts LogParser::Main.parse(log_file_path: log_file_path)
+rescue RuntimeError => error
+  puts error.message
+  exit 1
+end
