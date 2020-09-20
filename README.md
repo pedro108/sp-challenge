@@ -21,10 +21,13 @@ $ ./bin/log-parser webserver.log
 
 ## Lint
 ```bash
-$ ./lint
+$ ./bin/run-linter
 ```
 
 ## Automated Testing
+```bash
+$ ./bin/run-tests
+```
 
 ## Technical Approach
 
