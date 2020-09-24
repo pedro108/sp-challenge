@@ -9,8 +9,8 @@ RSpec.describe LogParser::FileUtils::FileReader do
   subject { described_class.new }
 
   describe '#read' do
-    context 'when the file_utils is read successfully' do
-      it 'executes the given block for each line read on the file_utils' do
+    context 'when the file is read successfully' do
+      it 'executes the given block for each line read on the file' do
         FakeFS.with_fresh do
           file_path = 'logfile.log'
           content = "/help_page/1 126.318.035.038\n/contact 184.123.665.067"
@@ -28,7 +28,7 @@ RSpec.describe LogParser::FileUtils::FileReader do
       end
     end
 
-    context 'when a file_utils is not found for the given file_utils path' do
+    context 'when a file is not found for the given file path' do
       it 'raises an error' do
         FakeFS.with_fresh do
           file_path = 'logfile.log'
