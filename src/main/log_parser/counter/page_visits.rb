@@ -21,6 +21,12 @@ module LogParser
         @unique_ips.length
       end
 
+      def average_visits
+        return 0 if unique_visits.eql? 0
+
+        visits / unique_visits
+      end
+
       private
 
       attr_reader :unique_ips

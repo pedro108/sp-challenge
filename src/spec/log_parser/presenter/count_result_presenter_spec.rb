@@ -8,17 +8,20 @@ RSpec.describe LogParser::Presenter::CountResultPresenter do
       {
         page: '/home',
         page_visits: 100,
-        unique_visits: 20
+        unique_visits: 20,
+        average_visits: 4
       },
       {
         page: '/about',
         page_visits: 90,
-        unique_visits: 25
+        unique_visits: 25,
+        average_visits: 4
       },
       {
         page: '/me',
         page_visits: 95,
-        unique_visits: 22
+        unique_visits: 22,
+        average_visits: 4
       }
     ]
   end
@@ -54,6 +57,21 @@ RSpec.describe LogParser::Presenter::CountResultPresenter do
         "| /me    | 22           |\n"\
         "| /home  | 20           |\n"\
         '+--------+--------------+'
+      )
+    end
+
+    it 'returns a terminal table for the count result average visits, with a descending order' do
+      present_result = subject.present(count_result)
+      page_visits_table = present_result[2]
+
+      expect(page_visits_table.to_s).to eql(
+        "+--------+---------------+\n"\
+        "| Page   | Average Views |\n"\
+        "+--------+---------------+\n"\
+        "| /about | 4             |\n"\
+        "| /me    | 4             |\n"\
+        "| /home  | 4             |\n"\
+        '+--------+---------------+'
       )
     end
   end

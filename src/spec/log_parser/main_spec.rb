@@ -73,6 +73,28 @@ RSpec.describe LogParser::Main do
         )
       end
     end
+
+    it 'returns a sorted table with the average views count' do
+      FakeFS.with_fresh do
+        file_path = 'logfile.log'
+        File.write(file_path, content, mode: 'w')
+
+        parsed_log = LogParser::Main.parse(log_file_path: file_path)
+
+        expect(parsed_log[2].to_s).to eql(
+          "+--------------+---------------+\n"\
+          "| Page         | Average Views |\n"\
+          "+--------------+---------------+\n"\
+          "| /about       | 1             |\n"\
+          "| /index       | 1             |\n"\
+          "| /about/2     | 1             |\n"\
+          "| /home        | 1             |\n"\
+          "| /contact     | 1             |\n"\
+          "| /help_page/1 | 1             |\n"\
+          '+--------------+---------------+'
+        )
+      end
+    end
   end
 
   context 'when no log_file_path parameter is passed' do

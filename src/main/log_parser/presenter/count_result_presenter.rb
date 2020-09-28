@@ -8,7 +8,8 @@ module LogParser
       def present(count_result)
         [
           present_for(count_result, %w[Page Visits], :page_visits),
-          present_for(count_result, ['Page', 'Unique Views'], :unique_visits)
+          present_for(count_result, ['Page', 'Unique Views'], :unique_visits),
+          present_for(count_result, ['Page', 'Average Views'], :average_visits)
         ]
       end
 

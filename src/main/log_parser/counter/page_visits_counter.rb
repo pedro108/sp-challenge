@@ -38,7 +38,8 @@ module LogParser
           acc.concat([{
                        page: page,
                        page_visits: result[page].visits,
-                       unique_visits: result[page].unique_visits
+                       unique_visits: result[page].unique_visits,
+                       average_visits: result[page].average_visits
                      }])
         end
       end
